@@ -331,6 +331,151 @@
             color: #999;
         }
 
+        /* Email Popup */
+        .email-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            z-index: 3000;
+            text-align: center;
+        }
+
+        .email-popup.active {
+            display: block;
+        }
+
+        .email-popup h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .email-popup p {
+            color: #444;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-popup button {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .email-popup button:hover {
+            background: #333;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2999;
+        }
+
+        .popup-overlay.active {
+            display: block;
+        }
+
+        /* Resume Popup */
+        .resume-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .resume-popup.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .resume-popup-content {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resume-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .resume-popup-header h3 {
+            color: #1a1a1a;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .resume-popup-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .resume-popup-buttons button,
+        .resume-popup-buttons a {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .resume-popup-buttons button:hover,
+        .resume-popup-buttons a:hover {
+            background: #333;
+        }
+
+        .resume-viewer {
+            flex: 1;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .resume-viewer iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
         /* Footer */
         footer {
             padding: 2rem;
@@ -382,7 +527,7 @@
             <p class="tagline">Mechanical Engineering @ Rice University</p>
             <p>Aspiring consultant passionate about solving complex problems through innovative engineering design and data-driven analysis.</p>
             <div class="cta-buttons">
-                <a href="your-resume.pdf" class="btn btn-primary" download>Download Resume</a>
+                <a href="#" onclick="showResumePopup(); return false;" class="btn btn-primary">View Resume</a>
                 <a href="https://linkedin.com/in/danielbilous" class="btn btn-secondary" target="_blank">LinkedIn</a>
             </div>
         </div>
@@ -430,15 +575,38 @@
     <section class="contact" id="contact">
         <h2 class="section-title">Let's Connect</h2>
         <div class="contact-links">
-            <a href="mailto:daniel.bilous1@gmail.com">Email</a>
+            <a href="#" onclick="showEmailPopup(); return false;">Email</a>
             <a href="https://linkedin.com/in/danielbilous" target="_blank">LinkedIn</a>
-            <a href="https://github.com/daniel-bilous" target="_blank">GitHub</a>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2024 Daniel Bilous</p>
     </footer>
+
+    <!-- Email Popup -->
+    <div class="popup-overlay" id="email-overlay" onclick="closeEmailPopup()"></div>
+    <div class="email-popup" id="email-popup">
+        <h3>Get in Touch</h3>
+        <p>daniel.bilous1@gmail.com</p>
+        <button onclick="closeEmailPopup()">Close</button>
+    </div>
+
+    <!-- Resume Popup -->
+    <div class="resume-popup" id="resume-popup">
+        <div class="resume-popup-content">
+            <div class="resume-popup-header">
+                <h3>Resume</h3>
+                <div class="resume-popup-buttons">
+                    <a href="daniel_bilous_resume.pdf" download>Download PDF</a>
+                    <button onclick="closeResumePopup()">Close</button>
+                </div>
+            </div>
+            <div class="resume-viewer">
+                <iframe src="daniel_bilous_resume.pdf" id="resume-iframe"></iframe>
+            </div>
+        </div>
+    </div>
 
     <!-- Rocket Modal -->
     <div id="rocket-modal" class="modal">
@@ -524,6 +692,31 @@
         function closeModal(projectId) {
             document.getElementById(projectId + '-modal').classList.remove('active');
         }
+
+        function showEmailPopup() {
+            document.getElementById('email-popup').classList.add('active');
+            document.getElementById('email-overlay').classList.add('active');
+        }
+
+        function closeEmailPopup() {
+            document.getElementById('email-popup').classList.remove('active');
+            document.getElementById('email-overlay').classList.remove('active');
+        }
+
+        function showResumePopup() {
+            document.getElementById('resume-popup').classList.add('active');
+        }
+
+        function closeResumePopup() {
+            document.getElementById('resume-popup').classList.remove('active');
+        }
+
+        // Close resume popup when clicking outside
+        document.getElementById('resume-popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeResumePopup();
+            }
+        });
 
         // Close modal when clicking outside
         window.onclick = function(event) {
