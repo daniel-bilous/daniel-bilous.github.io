@@ -476,6 +476,12 @@
             border: none;
         }
 
+        @media (max-width: 768px) {
+            .resume-viewer iframe {
+                height: 400px;
+            }
+        }
+
         /* Footer */
         footer {
             padding: 2rem;
@@ -603,7 +609,7 @@
                 </div>
             </div>
             <div class="resume-viewer">
-                <iframe src="daniel_bilous_resume.pdf" id="resume-iframe"></iframe>
+                <iframe src="daniel_bilous_resume.pdf#toolbar=0&navpanes=0&scrollbar=0" id="resume-iframe"></iframe>
             </div>
         </div>
     </div>
