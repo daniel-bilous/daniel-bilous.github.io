@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Daniel Bilous - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -14,172 +14,533 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1a1a1a;
+            background: #ffffff;
         }
 
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: #ecf0f1;
-        }
-
+        /* Navigation */
         nav {
-            background: #34495e;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1rem 0;
-            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
         nav a {
-            color: white;
+            color: #1a1a1a;
             text-decoration: none;
-            padding: 0.5rem 1.5rem;
-            margin: 0 0.5rem;
-            display: inline-block;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
 
         nav a:hover {
-            background: #2c3e50;
-            border-radius: 4px;
+            color: #666;
         }
 
-        .container {
-            max-width: 1000px;
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 2px solid #1a1a1a;
+            color: #1a1a1a;
+        }
+
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .headshot {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background: #f8f8f8;
+        }
+
+        .about .container {
+            max-width: 900px;
             margin: 0 auto;
-            padding: 2rem 1rem;
         }
 
-        section {
-            margin-bottom: 3rem;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1a1a1a;
         }
 
-        h2 {
-            color: #2c3e50;
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #444;
+            text-align: center;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            position: relative;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .project-card .project-subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.3rem 0.8rem;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #444;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 12px;
+            padding: 3rem;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: #1a1a1a;
+        }
+
+        .modal-content h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 0.5rem;
+            color: #1a1a1a;
         }
 
-        .about-content {
-            font-size: 1.1rem;
+        .modal-content .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .modal-content p {
+            font-size: 1.05rem;
             line-height: 1.8;
+            color: #444;
+            margin-bottom: 1rem;
         }
 
-        .project {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
+        .modal-content .detail-section {
+            margin-top: 1.5rem;
         }
 
-        .project h3 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
+        .modal-content .detail-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #1a1a1a;
         }
 
-        .project p {
-            color: #555;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-info {
-            background: #ecf0f1;
-            padding: 2rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .contact-info a {
-            color: #3498db;
-            text-decoration: none;
-            font-size: 1.1rem;
-            margin: 0 1rem;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            background: #2c3e50;
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: #1a1a1a;
             color: white;
             text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 3rem;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .contact-links a:hover {
+            color: #999;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            background: #0a0a0a;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            nav .nav-links {
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Your Name</h1>
-        <p>Mechanical Engineering Student | Aspiring Consultant</p>
-    </header>
-
     <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <div class="container">
+            <div class="logo">DB</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>I'm a mechanical engineering student with a passion for solving complex problems through innovative design and analysis. My experience spans CAD modeling, thermodynamics, and mechanical systems design.</p>
-                <p>Currently pursuing opportunities in engineering consulting where I can apply my technical knowledge and analytical skills to help organizations optimize their operations and solve challenging engineering problems.</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Daniel Bilous</h1>
+            <p class="tagline">Mechanical Engineering @ Rice University</p>
+            <p>Aspiring consultant passionate about solving complex problems through innovative engineering design and data-driven analysis.</p>
+            <div class="cta-buttons">
+                <a href="your-resume.pdf" class="btn btn-primary" download>Download Resume</a>
+                <a href="https://linkedin.com/in/danielbilous" class="btn btn-secondary" target="_blank">LinkedIn</a>
             </div>
-        </section>
+        </div>
+        <div class="hero-image">
+            <img src="headshot.jpg" alt="Daniel Bilous" class="headshot">
+        </div>
+    </section>
 
-        <section id="projects">
-            <h2>Projects</h2>
-            
-            <div class="project">
-                <h3>Project Title 1</h3>
-                <p><strong>Description:</strong> Brief description of what the project involved and what problem it solved.</p>
-                <p><strong>Skills Used:</strong> SolidWorks, MATLAB, Finite Element Analysis</p>
-                <p><strong>Outcome:</strong> Key results or achievements from the project.</p>
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-text">
+                I'm a mechanical engineering student at Rice University with a passion for solving complex problems at the intersection of engineering and business. My experience spans rocket design, consulting, and international diplomacy. I'm currently seeking opportunities in engineering consulting where I can apply my technical skills and analytical mindset to help organizations optimize their operations. When I'm not working on projects, you can find me lifting weights, playing poker, or experimenting in the kitchen.
+            </p>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <h2 class="section-title">Portfolio</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openModal('rocket')">
+                <h3>Rocket Recovery System</h3>
+                <p class="project-subtitle">Rice Eclipse</p>
+                <p>Designed and optimized L1-Class rocket achieving 2,960 ft apogee through advanced simulation and CAD modeling.</p>
+                <div class="skills">
+                    <span class="skill-tag">SolidWorks</span>
+                    <span class="skill-tag">OpenRocket</span>
+                    <span class="skill-tag">MATLAB</span>
+                </div>
             </div>
 
-            <div class="project">
-                <h3>Project Title 2</h3>
-                <p><strong>Description:</strong> Brief description of what the project involved and what problem it solved.</p>
-                <p><strong>Skills Used:</strong> Python, Thermodynamic Analysis, Data Visualization</p>
-                <p><strong>Outcome:</strong> Key results or achievements from the project.</p>
+            <div class="project-card" onclick="openModal('robotics')">
+                <h3>VEX Robotics Program</h3>
+                <p class="project-subtitle">Glenbrook North High School</p>
+                <p>Founded and led school's first competitive robotics team, improving performance by 40% through structured validation processes.</p>
+                <div class="skills">
+                    <span class="skill-tag">CAD Design</span>
+                    <span class="skill-tag">Team Leadership</span>
+                    <span class="skill-tag">Project Management</span>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="project">
-                <h3>Project Title 3</h3>
-                <p><strong>Description:</strong> Brief description of what the project involved and what problem it solved.</p>
-                <p><strong>Skills Used:</strong> CAD Design, Manufacturing Processes, Technical Documentation</p>
-                <p><strong>Outcome:</strong> Key results or achievements from the project.</p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <div class="contact-info">
-                <p>Let's connect!</p>
-                <a href="mailto:your.email@example.com">Email</a>
-                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-            </div>
-        </section>
-    </div>
+    <section class="contact" id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-links">
+            <a href="mailto:daniel.bilous1@gmail.com">Email</a>
+            <a href="https://linkedin.com/in/danielbilous" target="_blank">LinkedIn</a>
+            <a href="https://github.com/daniel-bilous" target="_blank">GitHub</a>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <p>&copy; 2024 Daniel Bilous</p>
     </footer>
+
+    <!-- Rocket Modal -->
+    <div id="rocket-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('rocket')">&times;</button>
+            <h2>Rocket Recovery System</h2>
+            <img src="rocket-image.jpg" alt="Rocket Project" class="project-image">
+            
+            <p><strong>Role:</strong> Rocket Recovery Engineer at Rice Eclipse</p>
+            <p><strong>Timeline:</strong> August 2025 - Present</p>
+            
+            <div class="detail-section">
+                <h3>Project Overview</h3>
+                <p>Led the design and development of a comprehensive rocket recovery system for Rice Eclipse's L1-Class rocket. The project involved optimizing rocket designs through advanced simulation software, structural CAD modeling, and precise engineering calculations to achieve a projected apogee of 2,960 feet.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Key Contributions</h3>
+                <p><strong>Design Optimization:</strong> Utilized OpenRocket simulation software to iterate on rocket designs, achieving a 125% increase in average projected apogee compared to previous iterations through systematic testing and refinement.</p>
+                
+                <p><strong>Structural Engineering:</strong> Designed critical bulkheads and interstage connections in SolidWorks, ensuring structural integrity under high-stress flight conditions while maintaining precise mechanical integration between rocket stages.</p>
+                
+                <p><strong>Recovery System:</strong> Calculated exact explosive charge amounts using MATLAB to guarantee safe stage separation and reliable parachute deployment, balancing safety requirements with performance optimization.</p>
+                
+                <p><strong>Manufacturing:</strong> Constructed the complete L1-Class rocket airframe and recovery system utilizing small-scale manufacturing processes, translating digital designs into a functional flight-ready vehicle.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Technical Skills Applied</h3>
+                <p>SolidWorks CAD modeling, OpenRocket flight simulation, MATLAB computational analysis, trajectory optimization, structural mechanics, manufacturing processes, and systems integration.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Outcomes</h3>
+                <p>Successfully achieved a projected apogee of 2,960 feet through comprehensive simulation and design validation. The project demonstrated proficiency in aerospace engineering principles and the ability to integrate multiple technical disciplines into a cohesive, high-performance system.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Robotics Modal -->
+    <div id="robotics-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('robotics')">&times;</button>
+            <h2>VEX Robotics Program</h2>
+            <img src="robotics-image.jpg" alt="Robotics Project" class="project-image">
+            
+            <p><strong>Role:</strong> VEX Robotics Captain at Glenbrook North High School</p>
+            <p><strong>Timeline:</strong> January 2024 - May 2025</p>
+            
+            <div class="detail-section">
+                <h3>Project Overview</h3>
+                <p>Founded and led Glenbrook North High School's first competitive robotics program from the ground up. Built a team of 10+ members and established all operational processes, technical workflows, and competitive standards to create a sustainable program for future students.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Key Contributions</h3>
+                <p><strong>Program Development:</strong> Pioneered the school's inaugural robotics program, recruiting team members, securing resources, and establishing organizational frameworks that enabled the team to compete effectively.</p>
+                
+                <p><strong>Operations Management:</strong> Established comprehensive operational processes including budget management, material sourcing protocols, and developed CAD training programs to bring new members up to speed on design tools.</p>
+                
+                <p><strong>Team Leadership:</strong> Coordinated cross-functional workflows between four specialized sub-teams (design, fabrication, programming, and strategy) under tight competition schedules, ensuring effective communication and project completion.</p>
+                
+                <p><strong>Performance Improvement:</strong> Implemented structured validation processes and fostered a competitive environment that drove a 40% improvement in robot performance metrics through iterative testing and team collaboration.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Technical Skills Applied</h3>
+                <p>CAD design and training, budget management, project coordination, team leadership, fabrication techniques, competitive strategy development, and process optimization.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Outcomes</h3>
+                <p>Successfully established a sustainable robotics program that achieved competitive performance while developing leadership, technical, and project management skills. Created training materials and operational frameworks that continue to support the program beyond my tenure as captain.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(projectId) {
+            document.getElementById(projectId + '-modal').classList.add('active');
+        }
+
+        function closeModal(projectId) {
+            document.getElementById(projectId + '-modal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
