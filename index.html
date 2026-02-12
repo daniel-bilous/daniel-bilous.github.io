@@ -567,6 +567,17 @@
                 </div>
             </div>
 
+            <div class="project-card" onclick="openModal('cad-practice')">
+                <h3>Helical Vented Sleeve CAD Project</h3>
+                <p class="project-subtitle">Personal Skills Development</p>
+                <p>Self-directed CAD modeling project to expand my technical skillset and build portfolio content that isn't proprietary, practicing advanced SolidWorks features.</p>
+                <div class="skills">
+                    <span class="skill-tag">SolidWorks</span>
+                    <span class="skill-tag">3D Modeling</span>
+                    <span class="skill-tag">Feature Mastery</span>
+                </div>
+            </div>
+
             <div class="project-card" onclick="openModal('microloan')">
                 <h3>Global Microloan Market Analysis</h3>
                 <p class="project-subtitle">Future Forward Foundation</p>
@@ -660,6 +671,53 @@
         </div>
     </div>
 
+    <!-- CAD Practice Modal -->
+    <div id="cad-practice-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('cad-practice')">&times;</button>
+            <h2>Helical Vented Sleeve CAD Project</h2>
+            <img src="helical-sleeve-cad.png" alt="Helical Vented Sleeve CAD Model" class="project-image">
+            
+            <p><strong>Context:</strong> Personal Skills Development Project</p>
+            <p><strong>Timeline:</strong> February 2026</p>
+            
+            <div class="detail-section">
+                <h3>Project Overview</h3>
+                <p>This was a self-directed project focused purely on expanding my CAD capabilities in SolidWorks. I wanted to practice some advanced modeling techniques I hadn't used before and build out my portfolio with work I could freely share, since most of my other engineering projects involve proprietary designs I can't showcase publicly.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>The Goal</h3>
+                <p>The main objective here wasn't to design something functional or solve a specific problem. It was about deliberately practicing new SolidWorks features and workflows that I'd either never used or hadn't fully mastered yet. I wanted to get comfortable with techniques that would make me more efficient and versatile when working on actual design projects down the line.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Skills Practiced</h3>
+                <p><strong>Reference Geometry:</strong> Created custom planes offset from the base geometry to establish proper sketch references for complex features. This is something I'd used sparingly before but wanted to get more fluent with since it's essential for more sophisticated designs.</p>
+                
+                <p><strong>Chamfering:</strong> Applied chamfers to soften edges and give the part a more finished, professional appearance. Getting comfortable with chamfer controls and understanding when to use them versus fillets was part of the learning process.</p>
+                
+                <p><strong>Wrap Feature:</strong> This was the big one I wanted to practice. The wrap tool lets you project 2D sketches onto curved surfaces, which opens up a ton of design possibilities. I used it to deboss the helical cutout pattern onto the cylindrical surface, which required understanding how to properly set up the sketch, position it relative to the target surface, and configure the wrap parameters.</p>
+                
+                <p><strong>Circular Patterning:</strong> Once I had the initial wrap feature working, I used circular pattern to replicate it around the central axis. This involved selecting the correct axis of rotation and defining the spacing parameters to get even distribution around the part.</p>
+                
+                <p><strong>Feature Management:</strong> Learned how to hide reference planes and other construction geometry that I needed for modeling but didn't want cluttering the final view. Keeping the feature tree organized and managing what's visible versus what's hidden is something that becomes more important as designs get more complex.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>What I Learned</h3>
+                <p>The biggest takeaway was getting hands-on experience with the wrap feature, which I'd never really used in depth before. Understanding how to properly set up wrapped geometry and then pattern it opens up a whole new category of designs I can now tackle confidently. I also got better at thinking through the modeling sequence ahead of time, planning which features need to come before others, and setting up reference geometry strategically rather than trying to work around its absence later.</p>
+                
+                <p>Beyond the technical skills, this project reinforced that sometimes the best way to learn is just to build something for the sake of building it. Not every project needs to solve a real problem or have an end customer. Sometimes you just need to mess around with the tools to figure out how they work and what they're capable of.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Why It Matters</h3>
+                <p>Having portfolio pieces that aren't tied to proprietary work is important for actually being able to showcase what I can do. This project gives me something tangible to point to when discussing my CAD skills, and the techniques I practiced here directly translate to more complex design work. Plus, it was a good reminder that continuous skill development doesn't always have to be tied to coursework or professional projects. Taking initiative to learn new tools and techniques on my own time is something I want to keep doing.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Microloan Modal -->
     <div id="microloan-modal" class="modal">
         <div class="modal-content">
@@ -686,7 +744,7 @@
                 
                 <p><strong>Regional Deep-Dives:</strong> Examined market dynamics across APAC (44% of global client volume), Latin America (highest loan volumes), and MEA (13% CAGR through 2030). Analyzed loan size variations, regulatory environments, and digital adoption rates to understand regional nuances that impact strategy.</p>
                 
-                <p><strong>Competitive Analysis:</strong> Evaluated different operating models, from Kiva's intermediary approach with ~35% interest rates due to administrative costs, to Zidisha's direct P2P model eliminating intermediaries, to WeBank's ecosystem integration within WeChat. This comparative analysis revealed opportunities for differentiation.</p>
+                <p><strong>Competitive Analysis:</strong> Evaluated different operating models, from Kiva's intermediary approach with around 35% interest rates due to administrative costs, to Zidisha's direct P2P model eliminating intermediaries, to WeBank's ecosystem integration within WeChat. This comparative analysis revealed opportunities for differentiation.</p>
                 
                 <p><strong>Trend Identification:</strong> Synthesized data on three critical trends reshaping the industry: institutionalization (banks projected to hold 55% market share by 2035), digital transformation (online lending at 15% CAGR), and product diversification (microinsurance growing at 14% CAGR).</p>
             </div>
@@ -706,44 +764,6 @@
             <div class="detail-section">
                 <h3>Skills Demonstrated</h3>
                 <p>This project showcased my ability to navigate ambiguous research questions, synthesize information from disparate sources, identify meaningful patterns in complex data, and translate analysis into strategic recommendations. It required balancing breadth (covering global markets) with depth (understanding regional nuances), while maintaining a clear focus on delivering actionable insights rather than just comprehensive documentation.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Robotics Modal -->
-    <div id="robotics-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('robotics')">&times;</button>
-            <h2>VEX Robotics Program</h2>
-            <img src="robotics-image.jpg" alt="Robotics Project" class="project-image">
-            
-            <p><strong>Role:</strong> VEX Robotics Captain at Glenbrook North High School</p>
-            <p><strong>Timeline:</strong> January 2024 - May 2025</p>
-            
-            <div class="detail-section">
-                <h3>Project Overview</h3>
-                <p>Founded and led Glenbrook North High School's first competitive robotics program from the ground up. Built a team of 10+ members and established all operational processes, technical workflows, and competitive standards to create a sustainable program for future students.</p>
-            </div>
-            
-            <div class="detail-section">
-                <h3>Key Contributions</h3>
-                <p><strong>Program Development:</strong> Pioneered the school's inaugural robotics program, recruiting team members, securing resources, and establishing organizational frameworks that enabled the team to compete effectively.</p>
-                
-                <p><strong>Operations Management:</strong> Established comprehensive operational processes including budget management, material sourcing protocols, and developed CAD training programs to bring new members up to speed on design tools.</p>
-                
-                <p><strong>Team Leadership:</strong> Coordinated cross-functional workflows between four specialized sub-teams (design, fabrication, programming, and strategy) under tight competition schedules, ensuring effective communication and project completion.</p>
-                
-                <p><strong>Performance Improvement:</strong> Implemented structured validation processes and fostered a competitive environment that drove a 40% improvement in robot performance metrics through iterative testing and team collaboration.</p>
-            </div>
-            
-            <div class="detail-section">
-                <h3>Technical Skills Applied</h3>
-                <p>CAD design and training, budget management, project coordination, team leadership, fabrication techniques, competitive strategy development, and process optimization.</p>
-            </div>
-            
-            <div class="detail-section">
-                <h3>Outcomes</h3>
-                <p>Successfully established a sustainable robotics program that achieved competitive performance while developing leadership, technical, and project management skills. Created training materials and operational frameworks that continue to support the program beyond my tenure as captain.</p>
             </div>
         </div>
     </div>
@@ -800,4 +820,5 @@
         });
     </script>
 </body>
+</html>
 </html>
