@@ -532,7 +532,7 @@
             <h1>Daniel Bilous</h1>
             <p class="tagline">Mechanical Engineering @ Rice University</p>
             <p style="font-size: 0.95rem; color: #888; margin-top: -1rem; margin-bottom: 2rem;">Minors in Business & Computational and Applied Mathematics</p>
-            <p>Aspiring consultant passionate about solving complex problems through innovative engineering design and data-driven analysis.</p>
+            <p>Aspiring engineer passionate about solving complex problems through innovative design and data-driven analysis.</p>
             <div class="cta-buttons">
                 <a href="#" onclick="showResumePopup(); return false;" class="btn btn-primary">View Resume</a>
                 <a href="https://linkedin.com/in/danielbilous" class="btn btn-secondary" target="_blank">LinkedIn</a>
@@ -547,7 +547,7 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <p class="about-text">
-                I'm a mechanical engineering student at Rice University with a passion for solving complex problems at the intersection of engineering and business. My experience spans rocket design, nonprofit consulting, and competitive robotics. I'm currently seeking opportunities in engineering consulting where I can apply my technical skills and analytical mindset to help organizations optimize their operations. When I'm not working on projects, you can find me lifting weights, playing poker, or experimenting in the kitchen.
+                I'm a mechanical engineering student at Rice University with a passion for solving complex problems at the intersection of engineering and design. My experience spans high-power rocketry, Formula SAE chassis development, magnetic levitation blood pump research, and nonprofit consulting. I'm currently seeking opportunities in engineering where I can apply my technical skills and analytical mindset to tackle hard, meaningful problems. When I'm not working on projects, you can find me lifting weights, playing poker, or experimenting in the kitchen.
             </p>
         </div>
     </section>
@@ -587,6 +587,18 @@
                     <span class="skill-tag">Data Analysis</span>
                     <span class="skill-tag">Excel</span>
                     <span class="skill-tag">Strategic Planning</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('bridge')">
+                <h3>Bridge Deformation Simulation</h3>
+                <p class="project-subtitle">Highlighted Coursework | CMOR 220</p>
+                <p>Built a dynamic MATLAB simulation of a truss bridge under load, modeling deformation across variable bridge lengths and weight conditions using linear algebra and stiffness matrix methods.</p>
+                <div class="skills">
+                    <span class="skill-tag">MATLAB</span>
+                    <span class="skill-tag">Linear Algebra</span>
+                    <span class="skill-tag">Structural Analysis</span>
+                    <span class="skill-tag">Data Visualization</span>
                 </div>
             </div>
         </div>
@@ -768,6 +780,49 @@
         </div>
     </div>
 
+    <!-- Bridge Modal -->
+    <div id="bridge-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('bridge')">&times;</button>
+            <h2>Bridge Deformation Simulation</h2>
+            <img src="bridge-deformation.png" alt="Bridge Deformation Simulation" class="project-image">
+
+            <p><strong>Context:</strong> Highlighted Coursework | CMOR 220 &mdash; Computational and Applied Mathematics</p>
+            <p><strong>Timeline:</strong> Spring 2026</p>
+
+            <div class="detail-section">
+                <h3>Project Overview</h3>
+                <p>Built a MATLAB simulation that models a truss bridge under load, tracking how the structure deforms as you vary both the number of bridge sections and the weight of the vehicle crossing it. The program dynamically generates the bridge geometry, assembles the structural stiffness matrix, solves for node displacements, and renders the deformed shape overlaid on the original to visualize where and how the bridge bends.</p>
+            </div>
+
+            <div class="detail-section">
+                <h3>The Challenge</h3>
+                <p>The core difficulty was bridging the gap (no pun intended) between abstract linear algebra concepts and physical structural behavior. A real truss has fibers connecting nodes at specific angles, and capturing that geometry in a way a computer can actually solve required thinking carefully about coordinate systems, force directions, and how to encode connectivity without hardcoding every single element. The bridge also needed to scale dynamically, meaning the code had to work for a one-section bridge just as cleanly as it did for a twenty-section one.</p>
+            </div>
+
+            <div class="detail-section">
+                <h3>Technical Approach</h3>
+                <p><strong>Adjacency Matrix Construction:</strong> Represented the bridge as an adjacency matrix where each row is a fiber and each column pair is a node's x and y degrees of freedom. The entries encode the direction cosines of each fiber, essentially embedding geometry directly into the linear algebra. Getting the indexing right for the left wall, middle sections, and right wall each required its own logic, especially since the end supports are fixed while the interior nodes are free to move.</p>
+
+                <p><strong>Stiffness Matrix and Displacement Solver:</strong> Assembled the global stiffness matrix using the adjacency matrix and fiber lengths, then solved the linear system to get node displacements. MATLAB's backslash operator handles the heavy lifting numerically, but setting up the force vector correctly was the tricky part: loads only applied to the bottom chord nodes, since that's where a car's weight would actually transfer through the deck.</p>
+
+                <p><strong>Deformation Visualization:</strong> Plotted both the original and deformed bridge geometries on the same figure, with fixed wall supports drawn using filled polygons. Overlaying the two states made it immediately obvious where the structure was struggling most, which turned out to always be the center span, regardless of bridge length.</p>
+
+                <p><strong>Parametric Analysis:</strong> Iterated over bridge lengths from 1 to 20 sections and identified the maximum safe length for each vehicle weight class before vertical displacement exceeded a defined threshold. This turned a single static simulation into something closer to a design tool.</p>
+            </div>
+
+            <div class="detail-section">
+                <h3>Results</h3>
+                <p>The simulation confirmed what intuition would suggest: longer bridges sag more, and heavier loads make it worse faster. For a light car (0.01 weight units), the bridge stays within acceptable deflection limits up to 3 sections. For a heavy truck (0.05 units), that drops to just 1 section. Total work done by the load grows roughly exponentially with bridge length, and the deformed shape approaches a parabolic sag profile as the number of sections increases. The spy plots of the adjacency matrix also revealed the repeating band structure of the connectivity, which made it visually clear why the middle of the bridge is structurally disadvantaged relative to the ends.</p>
+            </div>
+
+            <div class="detail-section">
+                <h3>Key Takeaway</h3>
+                <p>What made this project click for me was realizing that the stiffness matrix isn't just a mathematical abstraction; it's literally a description of how the structure resists force. Once I understood what each entry in the adjacency matrix was actually representing physically, the rest of the code fell into place naturally. It's a good reminder that the best way to really understand a concept is to implement it from scratch, because there's nowhere to hide when the bridge either deforms correctly or it doesn't.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         function openModal(projectId) {
             document.getElementById(projectId + '-modal').classList.add('active');
@@ -820,5 +875,4 @@
         });
     </script>
 </body>
-</html>
 </html>
